@@ -1,9 +1,9 @@
 services:
   storagy-sim:
-    # Prebuilt image on GitHub Container Registry. `docker compose up` uses it
-    # if it exists locally / can be pulled; run `docker compose build` to build
-    # from source instead.
-    image: ghcr.io/bluephysi01/storagy-simulation-system-docker:latest
+    # Prebuilt image on Docker Hub. `docker compose up` uses it if it exists
+    # locally / can be pulled; run `docker compose build` to build from
+    # source instead.
+    image: bluephysi01/storagy-simulation-system-docker:latest
     build: .
     container_name: storagy-sim
     # Loads OPENAI_API_KEY from the local .env file (copy it from .env.example).

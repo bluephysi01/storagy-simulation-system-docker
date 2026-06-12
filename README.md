@@ -30,7 +30,7 @@ cd storagy-simulation-system-docker
 # (선택) LLM 에이전트를 쓰려면 OpenAI API 키 설정
 cp .env.example .env       # .env 를 열어 본인 키 입력. 없어도 시뮬레이션 자체는 동작
 
-# 실행 — GHCR에 올라간 이미지를 받아서 실행 (없으면 로컬 빌드: docker compose build)
+# 실행 — Docker Hub에 올라간 이미지를 받아서 실행 (없으면 로컬 빌드: docker compose build)
 docker compose up -d
 ```
 
@@ -71,13 +71,13 @@ noVNC 데스크탑 안의 터미널에서 직접 `rebuild_ws.sh` / `run_sim.sh` 
 # 소스에서 이미지 빌드
 docker compose build
 
-# GHCR 로그인 후 푸시 (Packages write 권한이 있는 PAT 필요)
-echo $GITHUB_TOKEN | docker login ghcr.io -u bluephysi01 --password-stdin
-docker compose push   # ghcr.io/bluephysi01/storagy-simulation-system-docker:latest
+# Docker Hub 로그인 후 푸시
+docker login
+docker compose push   # bluephysi01/storagy-simulation-system-docker:latest
 ```
 
-푸시한 뒤 GitHub → Packages 에서 해당 패키지의 **Visibility를 Public** 으로 바꿔야
-다른 사람이 로그인 없이 `docker compose up` 만으로 이미지를 받을 수 있습니다.
+Docker Hub 저장소가 **Public** 이어야 다른 사람이 로그인 없이
+`docker compose up` 만으로 이미지를 받을 수 있습니다 (신규 저장소 기본값은 Public).
 
 ## 폴더 구조
 
